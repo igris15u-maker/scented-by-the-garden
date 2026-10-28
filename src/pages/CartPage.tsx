@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ShieldCheck, Tag, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 export const CartPage: React.FC = () => {
   const {
@@ -34,7 +35,7 @@ export const CartPage: React.FC = () => {
     }
   };
 
-  const freeShippingThreshold = 1999;
+  const freeShippingThreshold = BRAND_CONFIG.freeShippingThreshold;
   const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - (subtotal - discount));
 
   if (cart.length === 0) {

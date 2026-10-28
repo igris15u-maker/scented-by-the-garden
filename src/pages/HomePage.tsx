@@ -10,7 +10,7 @@ import { Newsletter } from '../components/Newsletter';
 import { QuickViewModal } from '../components/QuickViewModal';
 import { PRODUCTS, FRAGRANCE_FAMILIES } from '../data/products';
 import { FAQ_ITEMS } from '../data/faq';
-import { Product, FragranceFamily } from '../types/product';
+import { Product } from '../types/product';
 
 export const HomePage: React.FC = () => {
   const [selectedFamily, setSelectedFamily] = useState<string>('All');
@@ -119,7 +119,7 @@ export const HomePage: React.FC = () => {
       {/* 6. Botanical Ingredients Section */}
       <IngredientsSection />
 
-      {/* 7. Editorial Customer Journal / Sample Reviews */}
+      {/* 7. Client Reflections / Transparent Sample Reviews */}
       <section className="py-20 bg-[#20382D] text-[#F7F3EB] border-t border-[#B69A68]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -127,11 +127,11 @@ export const HomePage: React.FC = () => {
               Client Chronicles
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#F7F3EB] font-light">
-              Reflections from Connoisseurs
+              Illustrative Patron Reflections
             </h2>
-            <p className="text-xs text-[#A6AD98] mt-2 italic">
-              (Sample patron reviews presented for demonstration)
-            </p>
+            <div className="mt-2 inline-block px-3 py-1 bg-[#15251E] border border-[#B69A68]/40 text-[11px] font-mono text-[#D9C398] uppercase tracking-wider">
+              Sample Demonstration Data • Replace with verified customer reviews upon launch
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -141,7 +141,7 @@ export const HomePage: React.FC = () => {
               </p>
               <div>
                 <span className="block font-serif text-sm text-[#B69A68]">Ananya S. — New Delhi</span>
-                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Verified Patron • Forest Bloom</span>
+                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Sample Review • Forest Bloom</span>
               </div>
             </div>
 
@@ -151,7 +151,7 @@ export const HomePage: React.FC = () => {
               </p>
               <div>
                 <span className="block font-serif text-sm text-[#B69A68]">Vikram R. — Bengaluru</span>
-                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Verified Patron • Sandalwood Serenity</span>
+                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Sample Review • Sandalwood Serenity</span>
               </div>
             </div>
 
@@ -161,7 +161,7 @@ export const HomePage: React.FC = () => {
               </p>
               <div>
                 <span className="block font-serif text-sm text-[#B69A68]">Meera K. — Mumbai</span>
-                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Verified Patron • Jasmine Whisper</span>
+                <span className="text-[10px] uppercase tracking-widest text-[#A6AD98]">Sample Review • Jasmine Whisper</span>
               </div>
             </div>
           </div>

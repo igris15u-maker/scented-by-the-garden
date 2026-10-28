@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, Check, Tag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -67,7 +68,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
     navigate('/checkout');
   };
 
-  const freeShippingThreshold = 1999;
+  const freeShippingThreshold = BRAND_CONFIG.freeShippingThreshold;
   const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - (subtotal - discount));
   const shippingProgressPct = Math.min(100, Math.round(((subtotal - discount) / freeShippingThreshold) * 100));
 

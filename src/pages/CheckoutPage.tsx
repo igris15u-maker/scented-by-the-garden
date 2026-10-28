@@ -140,6 +140,12 @@ export const CheckoutPage: React.FC = () => {
     };
 
     sessionStorage.setItem('scented_last_order', JSON.stringify(order));
+    try {
+      const existingOrders = JSON.parse(localStorage.getItem('scented_admin_orders_v1') || '[]');
+      localStorage.setItem('scented_admin_orders_v1', JSON.stringify([order, ...existingOrders]));
+    } catch (e) {
+      console.error('Failed to sync to admin orders:', e);
+    }
     clearCart();
     setIsProcessing(false);
     navigate('/order-confirmation');

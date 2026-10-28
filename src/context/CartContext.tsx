@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { CartItem, Product } from '../types/product';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 interface CartContextType {
   cart: CartItem[];
@@ -23,8 +24,8 @@ interface CartContextType {
 
 const CART_STORAGE_KEY = 'scented_by_the_garden_cart_v1';
 const PROMO_STORAGE_KEY = 'scented_by_the_garden_promo_v1';
-const FREE_SHIPPING_THRESHOLD = 1999;
-const STANDARD_SHIPPING_FEE = 150;
+const FREE_SHIPPING_THRESHOLD = BRAND_CONFIG.freeShippingThreshold;
+const STANDARD_SHIPPING_FEE = BRAND_CONFIG.standardShippingFee;
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 

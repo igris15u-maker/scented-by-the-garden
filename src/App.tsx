@@ -18,6 +18,7 @@ import { IngredientsPage } from './pages/IngredientsPage';
 import { ContactPage } from './pages/ContactPage';
 import { FAQPage } from './pages/FAQPage';
 import { WishlistPage } from './pages/WishlistPage';
+import { AdminPage } from './pages/AdminPage';
 
 // Helper component to scroll to top on every route change
 const ScrollToTopOnRoute: React.FC = () => {
@@ -52,6 +53,7 @@ export const App: React.FC = () => {
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/wishlist" element={<WishlistPage />} />
+                  <Route path="/admin" element={<AdminPage />} />
                   <Route path="*" element={<HomePage />} />
                 </Routes>
               </main>

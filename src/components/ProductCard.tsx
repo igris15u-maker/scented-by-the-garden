@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Eye, Star } from 'lucide-react';
+import { Heart, ShoppingBag, Eye, Star, Sparkles } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
@@ -15,6 +15,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
+  const [imageError, setImageError] = useState(false);
 
   const isFavorited = isInWishlist(product.id);
 
@@ -70,12 +71,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         to={`/product/${product.id}`}
         className="relative block aspect-4/5 bg-[#ECE5D8] overflow-hidden"
       >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
-          loading="lazy"
-        />
+        {imageError ? (
+          <div className="w-full h-full bg-[#1e2f26] text-[#F7F3EB] flex flex-col items-center justify-center p-6 text-center">
+            <Sparkles className="w-6 h-6 text-[#B69A68] mb-2" />
+            <span className="font-serif text-lg text-[#F7F3EB]">{product.name}</span>
+            <span className="text-[10px] text-[#A6AD98] uppercase tracking-widest mt-1">
+              {product.family}
+            </span>
+          </div>
+        ) : (
+          <img
+            src={product.image}
+            alt={product.name}
+            onError={() => setImageError(true)}
+            className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+        )}
 
         {/* Subtle Luxury Gradient Overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 export const ContactPage: React.FC = () => {
   const { showToast } = useToast();
@@ -143,7 +144,7 @@ export const ContactPage: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white border border-[#A6AD98]/30 p-6 sm:p-8 space-y-6 shadow-xs">
               <h3 className="font-serif text-2xl text-[#20382D] pb-3 border-b border-[#A6AD98]/20">
-                The Mumbai Atelier
+                The {BRAND_CONFIG.contact.city} Atelier
               </h3>
 
               <div className="space-y-4 text-xs text-[#20231F]/80 leading-relaxed">
@@ -151,7 +152,7 @@ export const ContactPage: React.FC = () => {
                   <MapPin className="w-5 h-5 text-[#B69A68] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-[#20382D] block font-serif text-sm">Location</strong>
-                    The Garden Atelier, Colaba Promenade, Waterfront Quarter, Mumbai 400005, India
+                    {BRAND_CONFIG.contact.address}, {BRAND_CONFIG.contact.city} {BRAND_CONFIG.contact.pincode}, {BRAND_CONFIG.contact.country}
                   </div>
                 </div>
 
@@ -159,8 +160,7 @@ export const ContactPage: React.FC = () => {
                   <Clock className="w-5 h-5 text-[#B69A68] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-[#20382D] block font-serif text-sm">Concierge Hours</strong>
-                    Monday – Saturday: 10:00 AM – 7:30 PM IST<br />
-                    Sunday: Private Appointments Only
+                    {BRAND_CONFIG.contact.conciergeHours}
                   </div>
                 </div>
 
@@ -168,7 +168,7 @@ export const ContactPage: React.FC = () => {
                   <Phone className="w-5 h-5 text-[#B69A68] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-[#20382D] block font-serif text-sm">Telephone Advisory</strong>
-                    +91 (0) 22 2849 5500
+                    {BRAND_CONFIG.contact.phone}
                   </div>
                 </div>
 
@@ -176,7 +176,7 @@ export const ContactPage: React.FC = () => {
                   <Mail className="w-5 h-5 text-[#B69A68] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-[#20382D] block font-serif text-sm">Direct Correspondence</strong>
-                    concierge@scentedbythegarden.com
+                    {BRAND_CONFIG.contact.email}
                   </div>
                 </div>
               </div>

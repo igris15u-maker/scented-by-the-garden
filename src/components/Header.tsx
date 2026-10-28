@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { SearchModal } from './SearchModal';
 import { CartDrawer } from './CartDrawer';
 import { MobileNav } from './MobileNav';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +42,7 @@ export const Header: React.FC = () => {
     <>
       {/* Top Announcement Bar */}
       <div className="bg-[#20382D] text-[#F7F3EB] text-[11px] uppercase tracking-[0.25em] py-2 px-4 text-center border-b border-[#B69A68]/20 flex items-center justify-center gap-3">
-        <span>Complimentary Handcrafted Gift Packaging & Shipping Across India Above ₹1,999</span>
+        <span>Complimentary Handcrafted Gift Packaging & Shipping Across India Above ₹{BRAND_CONFIG.freeShippingThreshold.toLocaleString('en-IN')}</span>
         <span className="hidden md:inline text-[#B69A68]">•</span>
         <span className="hidden md:inline text-[#B69A68] font-medium">Use Code GARDEN10 for 10% Off</span>
       </div>
@@ -71,14 +72,14 @@ export const Header: React.FC = () => {
             <Link
               to="/"
               className="inline-block group focus:outline-none"
-              aria-label="Scented by the Garden Homepage"
+              aria-label={`${BRAND_CONFIG.name} Homepage`}
             >
               <div className="flex flex-col items-center lg:items-start">
                 <span className="font-serif text-xl sm:text-2xl md:text-3xl tracking-[0.22em] uppercase font-light text-[#F7F3EB] group-hover:text-[#B69A68] transition-colors">
-                  Scented by the Garden
+                  {BRAND_CONFIG.name}
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.35em] text-[#A6AD98] font-sans -mt-0.5">
-                  Nature, Bottled with Elegance
+                  {BRAND_CONFIG.tagline}
                 </span>
               </div>
             </Link>

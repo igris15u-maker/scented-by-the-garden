@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { X, Search, Heart, ShoppingBag, ArrowRight } from 'lucide-react';
+import { X, Search, Heart, ShoppingBag, ArrowRight, Shield } from 'lucide-react';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -50,16 +51,16 @@ export const MobileNav: React.FC<MobileNavProps> = ({
       />
 
       {/* Drawer */}
-      <div className="fixed inset-y-0 left-0 max-w-xs w-full bg-[#20382D] text-[#F7F3EB] shadow-2xl flex flex-col justify-between p-6 z-10 border-r border-[#B69A68]/30">
+      <div className="fixed inset-y-0 left-0 max-w-xs w-full bg-[#20382D] text-[#F7F3EB] shadow-2xl flex flex-col justify-between p-6 z-10 border-r border-[#B69A68]/30 overflow-y-auto">
         <div>
           {/* Top Bar with Brand and Close Button */}
           <div className="flex items-center justify-between pb-6 border-b border-[#B69A68]/20">
             <div>
               <span className="font-serif text-lg tracking-[0.2em] uppercase text-[#F7F3EB] block">
-                Scented by the Garden
+                {BRAND_CONFIG.name}
               </span>
               <span className="text-[9px] uppercase tracking-[0.3em] text-[#A6AD98]">
-                Nature, Bottled with Elegance
+                {BRAND_CONFIG.tagline}
               </span>
             </div>
             <button
@@ -101,6 +102,17 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 </Link>
               );
             })}
+
+            <Link
+              to="/admin"
+              onClick={onClose}
+              className="text-xs font-mono tracking-widest uppercase py-2 text-[#B69A68] flex items-center justify-between border-b border-[#B69A68]/10 hover:text-[#F7F3EB]"
+            >
+              <span className="flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5" /> Admin Console
+              </span>
+              <ArrowRight className="w-3 h-3 opacity-50" />
+            </Link>
           </nav>
         </div>
 

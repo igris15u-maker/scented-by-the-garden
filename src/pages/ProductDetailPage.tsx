@@ -33,12 +33,14 @@ export const ProductDetailPage: React.FC = () => {
   const [selectedVolume, setSelectedVolume] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'notes' | 'story' | 'ritual' | 'delivery'>('notes');
+  const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
     if (product) {
       setSelectedImage(product.image);
       setSelectedVolume(product.defaultVolume);
       setQuantity(1);
+      setImageError(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [id, product]);
@@ -103,11 +105,19 @@ export const ProductDetailPage: React.FC = () => {
           <div className="lg:col-span-6 space-y-4">
             {/* Main Featured Image */}
             <div className="relative aspect-4/5 w-full bg-[#ECE5D8] border border-[#A6AD98]/30 overflow-hidden shadow-lg group">
-              <img
-                src={selectedImage || product.image}
-                alt={product.name}
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
+              {imageError ? (
+                <div className="w-full h-full bg-[#1e2f26] text-[#F7F3EB] flex flex-col items-center justify-center p-8 text-center">
+                  <span className="font-serif text-3xl text-[#F7F3EB]">{product.name}</span>
+                  <span className="text-xs text-[#A6AD98] uppercase tracking-widest mt-2">{product.family}</span>
+                </div>
+              ) : (
+                <img
+                  src={selectedImage || product.image}
+                  alt={product.name}
+                  onError={() => setImageError(true)}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+              )}
               <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                 <span className="bg-[#20382D] text-[#F7F3EB] text-[10px] uppercase font-mono tracking-widest px-3 py-1 shadow-xs">
                   {product.family}

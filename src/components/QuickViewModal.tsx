@@ -16,6 +16,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
 
   const [selectedVolume, setSelectedVolume] = useState(product.defaultVolume);
   const [quantity, setQuantity] = useState(1);
+  const [imageError, setImageError] = useState(false);
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
@@ -59,11 +60,22 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Product Image */}
           <div className="relative aspect-square md:aspect-auto bg-[#ECE5D8] overflow-hidden">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover object-center"
-            />
+            {imageError ? (
+              <div className="w-full h-full bg-[#1e2f26] text-[#F7F3EB] flex flex-col items-center justify-center p-8 text-center min-h-[350px]">
+                <Sparkles className="w-8 h-8 text-[#B69A68] mb-3" />
+                <span className="font-serif text-2xl text-[#F7F3EB]">{product.name}</span>
+                <span className="text-xs text-[#A6AD98] uppercase tracking-widest mt-1">
+                  {product.family}
+                </span>
+              </div>
+            ) : (
+              <img
+                src={product.image}
+                alt={product.name}
+                onError={() => setImageError(true)}
+                className="w-full h-full object-cover object-center"
+              />
+            )}
             <div className="absolute top-4 left-4">
               <span className="bg-[#20382D] text-[#F7F3EB] text-[10px] uppercase font-mono tracking-widest px-3 py-1 shadow-sm">
                 {product.family}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight, Compass, Leaf, Droplets, ShieldCheck } from 'lucide-react';
+import { BRAND_CONFIG } from '../config/brandConfig';
 
 export const AboutPage: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ export const AboutPage: React.FC = () => {
             Nature, Bottled with Elegance
           </h1>
           <p className="text-sm sm:text-lg text-[#A6AD98] max-w-2xl mx-auto font-light leading-relaxed">
-            Scented by the Garden was born from an unyielding devotion to natural botanical flora, classical alembic maceration, and the quiet sophistication of understated luxury.
+            {BRAND_CONFIG.name} was born from an unyielding devotion to natural botanical flora, classical alembic maceration, and the quiet sophistication of understated luxury.
           </p>
         </div>
       </div>
