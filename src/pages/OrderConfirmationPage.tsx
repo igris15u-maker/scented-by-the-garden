@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { CheckCircle2, PackageCheck, Printer, ArrowRight, ShieldCheck, Sparkles, MapPin, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  CheckCircle2,
+  PackageCheck,
+  Printer,
+  ArrowRight,
+  ShieldCheck,
+  MapPin,
+  CreditCard,
+  Clock,
+} from 'lucide-react';
 import { OrderDetails } from '../types/product';
 
 export const OrderConfirmationPage: React.FC = () => {
   const [order, setOrder] = useState<OrderDetails | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = sessionStorage.getItem('scented_last_order');
@@ -28,7 +36,7 @@ export const OrderConfirmationPage: React.FC = () => {
       <div className="bg-[#F7F3EB] min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
         <h2 className="font-serif text-3xl text-[#20382D]">No Active Order Session Found</h2>
         <p className="text-sm text-[#20231F]/70 mt-2 max-w-sm">
-          You may have already completed your demo session or refreshed the browser cache.
+          You may have already completed your payment session or refreshed the browser cache.
         </p>
         <Link
           to="/collection"
@@ -40,19 +48,23 @@ export const OrderConfirmationPage: React.FC = () => {
     );
   }
 
+  const isPaid = order.paymentStatus === 'PAID';
+
   return (
     <div className="bg-[#F7F3EB] min-h-screen py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Demonstration Disclaimer Card */}
+        {/* Payment Confirmation Banner */}
         <div className="mb-8 p-4 bg-[#20382D] text-[#F7F3EB] border border-[#B69A68] flex items-center justify-between gap-4 shadow-lg">
           <div className="flex items-center gap-3">
             <ShieldCheck className="w-6 h-6 text-[#B69A68] shrink-0" />
             <div>
               <span className="font-serif text-base block font-medium">
-                Demonstration Order Confirmation
+                {isPaid ? 'Payment Received & Verified' : 'Order Placed for Cash on Delivery'}
               </span>
               <p className="text-xs text-[#A6AD98]">
-                This is a simulated order confirmation. No actual funds were debited and no physical shipment will occur.
+                {isPaid
+                  ? `Transaction completed via ${order.paymentMethod}.`
+                  : 'Payment will be collected upon doorstep delivery via Cash or Contactless UPI.'}
               </p>
             </div>
           </div>
@@ -79,13 +91,26 @@ export const OrderConfirmationPage: React.FC = () => {
               Thank You for Your Patronage
             </h1>
             <p className="text-xs sm:text-sm text-[#20231F]/75 max-w-lg mx-auto font-light leading-relaxed">
-              We have received your demo request. Your handcrafted flacons and complimentary testing vials are scheduled for curation at our atelier.
+              Your botanical flacons are scheduled for curation at our atelier. A tracking dispatch notice will be sent to your email.
             </p>
 
-            <div className="pt-2 inline-flex items-center gap-2 px-4 py-1.5 bg-[#FCFAF6] border border-[#B69A68]/40 text-xs font-mono">
-              <span className="text-[#A6AD98]">Reference No:</span>
-              <span className="font-bold text-[#20382D]">{order.orderId}</span>
-              <span className="text-[#A6AD98] ml-2">Date: {order.createdAt}</span>
+            {/* Order & Payment Meta Pills */}
+            <div className="pt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-mono">
+              <span className="px-3 py-1 bg-[#FCFAF6] border border-[#B69A68]/40 text-[#20382D]">
+                <strong>Order:</strong> {order.orderId}
+              </span>
+              <span className="px-3 py-1 bg-[#FCFAF6] border border-[#B69A68]/40 text-[#20382D]">
+                <strong>Date:</strong> {order.createdAt}
+              </span>
+              <span
+                className={`px-3 py-1 border font-semibold ${
+                  isPaid
+                    ? 'bg-[#20382D] text-[#D9C398] border-[#B69A68]'
+                    : 'bg-[#ECE5D8] text-[#8C7345] border-[#8C7345]'
+                }`}
+              >
+                {isPaid ? 'PAID' : 'PENDING CASH ON DELIVERY'}
+              </span>
             </div>
           </div>
 
@@ -105,16 +130,21 @@ export const OrderConfirmationPage: React.FC = () => {
 
             <div className="space-y-1.5">
               <span className="font-serif text-sm font-semibold text-[#20382D] block mb-2 flex items-center gap-1.5">
-                <PackageCheck className="w-4 h-4 text-[#B69A68]" /> Curation Details
+                <CreditCard className="w-4 h-4 text-[#B69A68]" /> Payment & Settlement
               </span>
               <p className="text-[#20231F]/80">
                 <strong className="text-[#20382D]">Method:</strong> {order.paymentMethod}
               </p>
+              {order.transactionId && (
+                <p className="text-[#20231F]/80 font-mono text-[11px]">
+                  <strong className="text-[#20382D]">Txn Ref:</strong> {order.transactionId}
+                </p>
+              )}
               <p className="text-[#20231F]/80">
-                <strong className="text-[#20382D]">Notification:</strong> Updates sent to {order.email}
+                <strong className="text-[#20382D]">Status:</strong> {order.paymentStatus}
               </p>
               <p className="text-[#20231F]/80">
-                <strong className="text-[#20382D]">Packaging:</strong> Forest Green Rigid Gift Box with Silk Ribbon
+                <strong className="text-[#20382D]">Notification:</strong> Receipt sent to {order.email}
               </p>
             </div>
           </div>

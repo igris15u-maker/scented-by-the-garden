@@ -66,4 +66,6 @@ export interface OrderDetails {
   shipping: number;
   total: number;
   paymentMethod: string;
+  paymentStatus: 'PAID' | 'PENDING_COD';
+  transactionId?: string;
 }
