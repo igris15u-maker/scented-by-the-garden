@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#20382D"/>
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#B69A68" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <!-- Leaf motif -->
+  <path d="M50 20 C40 35, 42 55, 50 68 C58 55, 60 35, 50 20 Z" fill="#B69A68" opacity="0.85"/>
+  <path d="M50 24 L50 64" stroke="#20382D" stroke-width="1.2"/>
+  <!-- Elegant letters SG -->
+  <text x="50" y="82" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="600" fill="#F7F3EB" text-anchor="middle" letter-spacing="3">SG</text>
+</svg>

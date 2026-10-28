@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #20382D;
+  --color-forest-dark: #15251E;
+  --color-forest-light: #2C4B3D;
+  --color-charcoal: #20231F;
+  --color-charcoal-muted: #3B3F39;
+  --color-ivory: #F7F3EB;
+  --color-ivory-light: #FCFAF6;
+  --color-ivory-dark: #ECE5D8;
+  --color-sage: #A6AD98;
+  --color-sage-light: #C9CFBF;
+  --color-sage-dark: #7A816C;
+  --color-gold: #B69A68;
+  --color-gold-light: #D9C398;
+  --color-gold-dark: #8C7345;
+  
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-ivory);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Subtle luxury grain texture overlay helper */
+.luxury-gold-border {
+  border-color: rgba(182, 154, 104, 0.35);
+}
+
+.luxury-gold-glow {
+  box-shadow: 0 10px 30px -10px rgba(182, 154, 104, 0.25);
+}
+
+.luxury-card-shadow {
+  box-shadow: 0 8px 30px -6px rgba(32, 35, 31, 0.06), 0 2px 8px -2px rgba(32, 35, 31, 0.04);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F3EB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A6AD98;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #20382D;
+}
